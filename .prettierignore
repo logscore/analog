@@ -1,5 +1,2 @@
 node_modules
 .next
-
-packages/ui/src/components/ui
-packages/ui/src/lib/utils.ts
