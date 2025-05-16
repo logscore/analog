@@ -4,7 +4,8 @@
     "build": {
       "dependsOn": ["^build"],
       "env": [
-        "NODE_ENV"
+        "NODE_ENV",
+        "DATABASE_URL"
       ],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
@@ -15,6 +16,19 @@
     },
     "lint": {
       "dependsOn": ["^lint"]
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
+    },
+    "db:studio": {
+      "persistent": true,
+      "cache": false
     }
   }
 }
