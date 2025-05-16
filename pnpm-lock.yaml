@@ -18,6 +18,12 @@ importers:
 
   apps/web:
     dependencies:
+      '@repo/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
+      better-auth:
+        specifier: ^1.2.8
+        version: 1.2.8
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
