@@ -1,4 +1,9 @@
-import { createCallerFactory, createTRPCRouter } from "./trpc";
+import "server-only";
+import {
+  createCallerFactory,
+  createTRPCContext,
+  createTRPCRouter,
+} from "./trpc";
 import { userRouter } from "./routers/user";
 
 export const appRouter = createTRPCRouter({
@@ -8,3 +13,4 @@ export const appRouter = createTRPCRouter({
 export type AppRouter = typeof appRouter;
 
 export const createCaller = createCallerFactory(appRouter);
+export const createContext = createTRPCContext;

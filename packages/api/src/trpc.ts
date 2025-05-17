@@ -1,3 +1,4 @@
+import "server-only";
 import { initTRPC, TRPCError } from "@trpc/server";
 import { ZodError } from "zod";
 import superjson from "superjson";
