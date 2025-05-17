@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@repo/auth": "workspace:*",
+    "@radix-ui/react-label": "^2.1.6",
+    "@radix-ui/react-slot": "^1.2.2",
     "@repo/api": "workspace:*",
+    "@repo/auth": "workspace:*",
     "@repo/env": "workspace:*",
     "@tanstack/react-query": "^5.76.1",
     "@trpc/client": "^11.1.2",
