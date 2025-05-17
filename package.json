@@ -4,7 +4,11 @@
     "build": "dotenv -- turbo run build",
     "dev": "dotenv -- turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,css,,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,css,,md}\"",
+    "db:generate": "turbo run db:generate",
+    "db:migrate": "dotenv -- turbo run db:migrate",
+    "db:push": "dotenv -- turbo run db:push",
+    "db:studio": "dotenv -- turbo run db:studio"
   },
   "devDependencies": {
     "turbo": "^2.5.3",
