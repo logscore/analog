@@ -161,7 +161,7 @@ export default function SignUpFormReact() {
               onChange={(e) => setEmail(e.target.value)}
               required={true}
               className=
-                  {`text-[${formStyles.formFontColor}] font-[${formStyles.formFont}] text-[${formStyles.formFontSizePx}px] ${isInline ? "mr-4 mb-0" : "mb-10"} w-full max-w-[300px] min-w-[100px] bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2`}
+                  {`text-[#000000] font-[${formStyles.formFont}] text-[${formStyles.formFontSizePx}px] ${isInline ? "mr-4 mb-0" : "mb-10"} w-full max-w-[300px] min-w-[100px] bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2`}
             />
             <div aria-hidden="true" style={{ position: "absolute", left: "-2024px" }}>
                 
@@ -187,13 +187,9 @@ export default function SignUpFormReact() {
   }
 
   function BackButton() {
-    const [isHovered, setIsHovered] = useState(false);
-
     return (
       <button
         className="text-center m-auto mt-10 font-inter text-sm bg-transparent border-none cursor-pointer hover:underline"
-        onMouseOut={() => setIsHovered(false)}
-        onMouseOver={() => setIsHovered(true)}
         onClick={resetForm}
       >
         &larr; Back
@@ -201,25 +197,13 @@ export default function SignUpFormReact() {
     );
   }
 
-  function SignUpFormButton({ props }: any) {
-    const [isHovering, setIsHovering] = useState(false);
-
-    const handleMouseEnter = () => {
-      setIsHovering(true);
-    };
-  
-    const handleMouseLeave = () => {
-      setIsHovering(false);
-    };
-  
+  function SignUpFormButton() {
     return (
       <button
         type="submit"
         className={`
-          hover:bg-[#222222] bg-[#000000] dark:bg-[#121212] border-[1px] dark:border-[#2d2d2d] text-[#ffffff] font-[${formStyles.buttonFont}] ${isInline ? 'w-min' : 'w-full'} max-w-[300px] ${isInline ? 'whitespace-nowrap' : 'whitespace-normal'} h-[38px] flex items-center justify-center flex-row px-[9px] py-[17px] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] rounded-[8px] text-center font-medium leading-[20px] border-[1px_solid_rgb(50,50,50)] cursor-pointer transition-colors duration-200 ease-in-out
+          bg-[#121212] border-[1px] border-[#2d2d2d] text-[#ffffff] font-[${formStyles.buttonFont}] ${isInline ? 'w-min' : 'w-full'} max-w-[300px] ${isInline ? 'whitespace-nowrap' : 'whitespace-normal'} h-[38px] flex items-center justify-center flex-row px-[9px] py-[17px] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] rounded-[8px] text-center font-medium leading-[20px] border-[1px_solid_rgb(50,50,50)] cursor-pointer transition-colors duration-200 ease-in-out
         `}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         {formState === SUBMITTING ? "Please wait..." : formStyles.buttonText}
       </button>
