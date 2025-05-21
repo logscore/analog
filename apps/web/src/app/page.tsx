@@ -10,5 +10,9 @@ export default async function Home() {
     redirect("/login");
   }
 
-  return <CalendarLayout />;
+  return (
+    <div className="flex w-dvw h-dvh">
+      <CalendarLayout />
+    </div>
+  );
 }
