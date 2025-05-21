@@ -17,8 +17,5 @@
     "prettier": "^3.5.3"
   },
   "packageManager": "bun@1.2.13",
-  "workspaces": ["apps/*", "packages/*", "tooling/*"],
-  "dependencies": {
-    "next-themes": "^0.4.6"
-  }
+  "workspaces": ["apps/*", "packages/*", "tooling/*"]
 }

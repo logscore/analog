@@ -77,16 +77,13 @@ export default function SignUpFormReact() {
     setFormState(SUBMITTING);
 
     // build additional fields
-    const additionalFields = Object.entries(fields).reduce(
-      (acc, [key, val]) => {
-        if (val) {
-          return acc + "&" + key + "=" + encodeURIComponent(val);
-        }
-        return acc;
-      },
-      ""
-    );
-    
+    const additionalFields = new URLSearchParams();
+    Object.entries(fields).forEach(([key, val]) => {
+      if (val) {
+        additionalFields.append(key, val);
+      }
+    });
+
     // build body
     const formBody = `userGroup=${encodeURIComponent(
       formStyles.userGroup
@@ -95,7 +92,7 @@ export default function SignUpFormReact() {
     // API request to add user to newsletter
     fetch(`https://${domain}/api/newsletter-form/${formStyles.id}`, {
       method: "POST",
-      body: formBody + additionalFields,
+      body: formBody + additionalFields.toString(),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
@@ -131,19 +128,12 @@ export default function SignUpFormReact() {
     case SUCCESS:
       return (
         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-          }}
+          className="flex items-center justify-center w-full"
         >
           <p
-            style={{
-              fontFamily: `'${formStyles.successFont}', sans-serif`,
-              fontSize: `${formStyles.successFontSizePx}px`,
-            }}
-            className="text-black dark:text-white" 
+            className={
+              'font-open-sans text-[15px] text-black dark:text-white'
+            }
           >
             {formStyles.successMessage}
           </p>
@@ -161,13 +151,7 @@ export default function SignUpFormReact() {
         <>
           <form
             onSubmit={handleSubmit}
-            style={{
-              display: "flex",
-              flexDirection: isInline ? "row" : "column",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
-            }}
+            className={`flex ${isInline ? "flex-row" : "flex-col"} items-center justify-center w-full`}
           >
             <input
               type="text"
@@ -176,21 +160,8 @@ export default function SignUpFormReact() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required={true}
-              style={{
-                color: formStyles.formFontColor,
-                fontFamily: `'${formStyles.formFont}', sans-serif`,
-                fontSize: `${formStyles.formFontSizePx}px`,
-                margin: isInline ? "0px 10px 0px 0px" : "0px 0px 10px",
-                width: "100%",
-                maxWidth: "300px",
-                minWidth: "100px",
-                background: "#FFFFFF",
-                border: "1px solid #D1D5DB",
-                boxSizing: "border-box",
-                boxShadow: "rgba(0, 0, 0, 0.05) 0px 1px 2px",
-                borderRadius: "8px",
-                padding: "8px 12px",
-              }}
+              className=
+                  {`text-[${formStyles.formFontColor}] font-[${formStyles.formFont}] text-[${formStyles.formFontSizePx}px] ${isInline ? "mr-4 mb-0" : "mb-10"} w-full max-w-[300px] min-w-[100px] bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2`}
             />
             <div aria-hidden="true" style={{ position: "absolute", left: "-2024px" }}>
                 
@@ -204,18 +175,10 @@ export default function SignUpFormReact() {
   function SignUpFormError() {
     return (
       <div
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-        }}
+        className="flex items-center justify-center w-full"
       >
         <p
-          style={{
-            fontFamily: "Inter, sans-serif",
-            color: "rgb(185, 28, 28)",
-            fontSize: "14px",
-          }}
+          className="font-open-sans text-[14px] text-[#b91c1c]"
         >
           {errorMessage || "Oops! Something went wrong, please try again"}
         </p>
@@ -228,16 +191,7 @@ export default function SignUpFormReact() {
 
     return (
       <button
-        style={{
-          font: "14px, Inter, sans-serif",
-          margin: "10px auto",
-          textAlign: "center",
-          background: "transparent",
-          border: "none",
-          cursor: "pointer",
-          textDecoration: isHovered ? "underline" : "none",
-        }}
-        className="text-black dark:text-white"
+        className="text-center m-auto mt-10 font-inter text-sm bg-transparent border-none cursor-pointer hover:underline"
         onMouseOut={() => setIsHovered(false)}
         onMouseOver={() => setIsHovered(true)}
         onClick={resetForm}
@@ -261,29 +215,9 @@ export default function SignUpFormReact() {
     return (
       <button
         type="submit"
-        style={{
-          background: isHovering ? '#181818' : formStyles.buttonColor,
-          fontSize: `${formStyles.buttonFontSizePx}px`,
-          color: formStyles.buttonFontColor,
-          fontFamily: `'${formStyles.buttonFont}', sans-serif`,
-          width: isInline ? "min-content" : "100%",
-          maxWidth: "300px",
-          whiteSpace: isInline ? "nowrap" : "normal",
-          height: "38px",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "row",
-          padding: "9px 17px",
-          boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.05)",
-          borderRadius: "8px",
-          textAlign: "center",
-          fontStyle: "normal",
-          fontWeight: 500,
-          lineHeight: "20px",
-          border: "1px solid rgb(50, 50, 50)",
-          cursor: "pointer",
-          transition: "background 0.2s ease-in-out",
-        }}
+        className={`
+          hover:bg-[#222222] bg-[#000000] dark:bg-[#121212] border-[1px] dark:border-[#2d2d2d] text-[#ffffff] font-[${formStyles.buttonFont}] ${isInline ? 'w-min' : 'w-full'} max-w-[300px] ${isInline ? 'whitespace-nowrap' : 'whitespace-normal'} h-[38px] flex items-center justify-center flex-row px-[9px] py-[17px] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] rounded-[8px] text-center font-medium leading-[20px] border-[1px_solid_rgb(50,50,50)] cursor-pointer transition-colors duration-200 ease-in-out
+        `}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
