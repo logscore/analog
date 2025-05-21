@@ -7,7 +7,7 @@ const ERROR = "ERROR";
 const SUCCESS = "SUCCESS";
 const formStates = [INIT, SUBMITTING, ERROR, SUCCESS] as const;
 const formStyles = {
-  "id": process.env.LOOPS_FORM_ID,
+  "id": "cmah4zhcy0bkevylxyp45ina9", // Remove before pull request
   "name": "Default",
   "formStyle": "inline",
   "placeholderText": "you@example.com",
@@ -22,7 +22,7 @@ const formStyles = {
   "successMessage": "Thanks! Let's build the best calendar to ever exist.",
   "successFont": "Open Sans",
   "successFontColor": "#000000",
-  "successFontSizePx": 12,
+  "successFontSizePx": 15,
   "userGroup": "analog_waitlist"
 }
 const domain = "app.loops.so"
@@ -144,6 +144,7 @@ export default function SignUpFormReact() {
               color: formStyles.successFontColor,
               fontSize: `${formStyles.successFontSizePx}px`,
             }}
+            className="text-black dark:text-white" 
           >
             {formStyles.successMessage}
           </p>
@@ -248,11 +249,21 @@ export default function SignUpFormReact() {
   }
 
   function SignUpFormButton({ props }: any) {
+    const [isHovering, setIsHovering] = useState(false);
+
+    const handleMouseEnter = () => {
+      setIsHovering(true);
+    };
+  
+    const handleMouseLeave = () => {
+      setIsHovering(false);
+    };
+  
     return (
       <button
         type="submit"
         style={{
-          background: formStyles.buttonColor,
+          background: isHovering ? '#181818' : formStyles.buttonColor,
           fontSize: `${formStyles.buttonFontSizePx}px`,
           color: formStyles.buttonFontColor,
           fontFamily: `'${formStyles.buttonFont}', sans-serif`,
@@ -270,9 +281,12 @@ export default function SignUpFormReact() {
           fontStyle: "normal",
           fontWeight: 500,
           lineHeight: "20px",
-          border: "none",
+          border: "1px solid rgb(50, 50, 50)",
           cursor: "pointer",
+          transition: "background 0.2s ease-in-out",
         }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         {formState === SUBMITTING ? "Please wait..." : formStyles.buttonText}
       </button>
