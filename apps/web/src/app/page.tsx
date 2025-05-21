@@ -3,8 +3,6 @@
 import { useRouter } from "next/navigation"
 import type React from "react"
 import { Button } from "@/components/ui/button"
-import { Github } from "lucide-react"
-import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import SignUpFormReact from "@/components/custom/email_waitlist"
 
@@ -29,7 +27,7 @@ export default function LandingPage() {
       <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="max-w-7xl mx-auto flex flex-col items-center justify-center text-center">
           <div className="space-y-4 sm:space-y-6 max-w-3xl px-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
               The calendar that changes{' '}
               <span className="font-serif italic">everything</span>
             </h1>
