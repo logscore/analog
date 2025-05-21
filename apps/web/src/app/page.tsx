@@ -1,13 +1,14 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "@repo/auth/server";
+import { CalendarLayout } from "@/components/calendar-layout";
 
 export default async function Home() {
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (!session) {
-    redirect("/login")
+    redirect("/login");
   }
 
-  return <div></div>;
+  return <CalendarLayout />;
 }
