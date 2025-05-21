@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import type { FC, SVGProps } from 'react';
 
 interface GitHubProps extends SVGProps<SVGSVGElement> {
     className?: string;
