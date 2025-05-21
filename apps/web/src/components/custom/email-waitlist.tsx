@@ -7,7 +7,7 @@ const ERROR = "ERROR";
 const SUCCESS = "SUCCESS";
 const formStates = [INIT, SUBMITTING, ERROR, SUCCESS] as const;
 const formStyles = {
-  "id": "cmah4zhcy0bkevylxyp45ina9", // Remove before pull request
+  "id": process.env.NEXT_PUBLIC_EMAIL_FORM_ID || "",
   "name": "Default",
   "formStyle": "inline",
   "placeholderText": "you@example.com",
@@ -141,7 +141,6 @@ export default function SignUpFormReact() {
           <p
             style={{
               fontFamily: `'${formStyles.successFont}', sans-serif`,
-              color: formStyles.successFontColor,
               fontSize: `${formStyles.successFontSizePx}px`,
             }}
             className="text-black dark:text-white" 
@@ -230,7 +229,6 @@ export default function SignUpFormReact() {
     return (
       <button
         style={{
-          color: "#6b7280",
           font: "14px, Inter, sans-serif",
           margin: "10px auto",
           textAlign: "center",
@@ -239,6 +237,7 @@ export default function SignUpFormReact() {
           cursor: "pointer",
           textDecoration: isHovered ? "underline" : "none",
         }}
+        className="text-black dark:text-white"
         onMouseOut={() => setIsHovered(false)}
         onMouseOver={() => setIsHovered(true)}
         onClick={resetForm}
