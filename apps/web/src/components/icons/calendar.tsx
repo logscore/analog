@@ -1,11 +1,10 @@
-import { SVGProps } from 'react';
+import { FC, SVGProps } from 'react';
 
 interface CalendarIconProps extends SVGProps<SVGSVGElement> {
     className?: string;
 }
 
-export function CalendarIcon({ className, ...props }: CalendarIconProps) {
-  return (
+export const CalendarIcon: FC<CalendarIconProps> = ({ className, ...props }) => {  return (
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"

@@ -1,11 +1,10 @@
-import { SVGProps } from 'react';
+import { FC, SVGProps } from 'react';
 
 interface GitHubProps extends SVGProps<SVGSVGElement> {
     className?: string;
 }
 
-export function GitHub({ className, ...props }: GitHubProps) {
-  return (
+export const GitHub: FC<GitHubProps> = ({ className, ...props }) => {  return (
     <svg
       {...props}
       role="img"
